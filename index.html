@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zahlenraten</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rye&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <!-- beginn body -->
+
+  <body>
+    <div class="outer">
+      <div class="site">
+        <header class="box">
+          <p class="title">Zahlenraten</p>
+        </header>
+
+        <p class="box">Rate eine Zahl von 1 bis 100!</p>        
+
+          <div class="link">
+            Hintergrund Illustration:
+            <a href="https://pixabay.com/de/users/geralt-9301/" target="_blank"
+              >geralt
+            </a>
+            | Quelle:
+            <a
+              href="https://pixabay.com/de/illustrations/hintergrund-zahlen-zahlen-z%C3%A4hlen-5594879/"
+              target="_blank"
+              >pixabay</a
+            >
+          </div>
+
+          <script>
+            var ausgedachteZahl;
+            var obereGrenze = 100;
+            var gerateneZahl;
+            var anzahlDerVersuche = 0;
+
+            ausgedachteZahl = Math.random() * obereGrenze;
+            ausgedachteZahl = Math.round(ausgedachteZahl + 0.5);
+
+            do {
+              gerateneZahl = prompt("Rate bitte", "Eine Zahl bis " + obereGrenze);
+
+              if (gerateneZahl > ausgedachteZahl) {
+                alert("Deine Zahl ist zu groß.");
+              }
+              if (gerateneZahl < ausgedachteZahl) {
+                alert("Deine Zahl ist zu klein.")
+              }
+              anzahlDerVersuche = anzahlDerVersuche + 1;
+            } while(gerateneZahl != ausgedachteZahl);
+
+            if(gerateneZahl == ausgedachteZahl) {
+              alert("Richtig geraten!");
+            }
+            alert("Du hast " + anzahlDerVersuche + " Mal geraten.");
+          </script>
+        </main>
+      </div>
+    </div>
+    <footer>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Website made by 지기 👽 in 2026
+    </footer>
+  </body>
+</html>
