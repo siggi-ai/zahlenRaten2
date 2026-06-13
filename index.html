@@ -22,8 +22,10 @@
           <p class="title">Zahlenraten</p>
         </header>
 
-        <p class="box">Rate eine Zahl von 1 bis 100!</p>        
-
+        <p class="box">Rate eine Zahl von 1 bis 100!</p>
+        <p class="box">Du hast maximal 10 Versuche.</p>        
+        <button id="oeffnenBtn">Raten</button> 
+        <br>
           <div class="link">
             Hintergrund Illustration:
             <a href="https://pixabay.com/de/users/geralt-9301/" target="_blank"
@@ -38,6 +40,7 @@
           </div>
 
           <script>
+            const oeffnenBtn = document.getElementById("oeffnenBtn");
             var ausgedachteZahl;
             var obereGrenze = 100;
             var gerateneZahl;
@@ -46,7 +49,8 @@
             ausgedachteZahl = Math.random() * obereGrenze;
             ausgedachteZahl = Math.round(ausgedachteZahl + 0.5);
 
-            do {
+            oeffnenBtn.addEventListener("click", () => {
+              do {
               gerateneZahl = prompt("Rate bitte", "Eine Zahl bis " + obereGrenze);
 
               if (gerateneZahl > ausgedachteZahl) {
@@ -55,13 +59,19 @@
               if (gerateneZahl < ausgedachteZahl) {
                 alert("Deine Zahl ist zu klein.")
               }
-              anzahlDerVersuche = anzahlDerVersuche + 1;
-            } while(gerateneZahl != ausgedachteZahl);
+              anzahlDerVersuche = anzahlDerVersuche + 1
+            } while(gerateneZahl != ausgedachteZahl && anzahlDerVersuche < 10);
 
             if(gerateneZahl == ausgedachteZahl) {
               alert("Richtig geraten!");
+            if(gerateneZahl != ausgedachteZahl) {
+              alert("Leider verloren. :(");
+            }
             }
             alert("Du hast " + anzahlDerVersuche + " Mal geraten.");
+            });
+
+            
           </script>
         </main>
       </div>
