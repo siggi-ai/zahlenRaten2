@@ -25,6 +25,7 @@
         <p class="box">Rate eine Zahl von 1 bis 100!</p>
         <p class="box">Du hast maximal 10 Versuche.</p>        
         <button id="oeffnenBtn">Raten</button> 
+        <button id="restartBtn" style="display: none">Neustart</button>
         <br>
           <div class="link">
             Hintergrund Illustration:
@@ -41,15 +42,22 @@
 
           <script>
             const oeffnenBtn = document.getElementById("oeffnenBtn");
+            const restartBtn = document.getElementById("restartBtn");
             var ausgedachteZahl;
             var obereGrenze = 100;
             var gerateneZahl;
             var anzahlDerVersuche = 0;
 
-            ausgedachteZahl = Math.random() * obereGrenze;
-            ausgedachteZahl = Math.round(ausgedachteZahl + 0.5);
+            function neueZufallszahl() {
+              ausgedachteZahl = Math.random() * obereGrenze;
+              ausgedachteZahl = Math.round(ausgedachteZahl + 0.5);
+            }
+  
 
             oeffnenBtn.addEventListener("click", () => {
+              restartBtn.style.display = "none";
+              neueZufallszahl();
+              console.log(ausgedachteZahl);
               do {
               gerateneZahl = prompt("Rate bitte", "Eine Zahl bis " + obereGrenze);
 
@@ -64,11 +72,20 @@
 
             if(gerateneZahl == ausgedachteZahl) {
               alert("Richtig geraten!");
+              restartBtn.style.display = "inline-block";
+              oeffnenBtn.disabled = true;
             if(gerateneZahl != ausgedachteZahl) {
               alert("Leider verloren. :(");
+              restartBtn.style.display = "inline-block";
+              oeffnenBtn.disabled = true;
             }
             }
             alert("Du hast " + anzahlDerVersuche + " Mal geraten.");
+            restartBtn.addEventListener("click", () => {
+              anzahlDerVersuche = 0;
+              restartBtn.style.display = "none";
+              oeffnenBtn.disabled = false;
+            })
             });
 
             
